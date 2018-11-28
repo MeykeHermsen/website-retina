@@ -1,10 +1,9 @@
-# Radboudumc Pelican Website Template
+# DIAG Retina website
 
-[![Build Status](https://travis-ci.org/DIAGNijmegen/website-base.svg?branch=master)](https://travis-ci.org/DIAGNijmegen/website-base)
+[![Build Status](https://travis-ci.org/DIAGNijmegen/website-base.svg?branch=master)](https://travis-ci.org/DIAGNijmegen/website-retina)
 
-Base Pelican setup for websites related to the DIAG group.
 
-[Online demo](https://diagnijmegen.github.io/website-base/)
+[Online demo](https://diagnijmegen.github.io/website-retina/)
 
 **Components**
 

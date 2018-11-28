@@ -1,0 +1,50 @@
+# Set main language of the repo to python
+language: python
+python:
+- 3.6
+
+# Only run travis on main branch
+branches:
+  only:
+  - master
+
+install:
+  # Install pelican
+  - pip install -r requirements.txt
+  # Install requirements for the css build
+  - npm --prefix radboudumc-theme install
+  #- npm --prefix above-the-fold install
+
+# Caching settings (this speeds up the build)
+cache:
+  pip: true
+  directories:
+    - radboudumc-theme/node_modules
+    #- above-the-fold/node_modules
+
+before_cache:
+  - rm -f $HOME/.cache/pip/log/debug.log
+
+script:
+- npm --prefix radboudumc-theme run deploy
+- python plugins/bib_writer.py
+- pelican content -s publishconf.py
+#- npm --prefix above-the-fold run critical
+- cp CNAME output/CNAME
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  keep_history: true
+  local_dir: output
+  target_brach: gh-pages
+  email: webteamdiag@gmail.com
+  name: "Webteam DIAG Deploy Bot"
+  github_token: $GH_PAGES
+  on:
+    brach: master
+
+notifications:
+ email:
+   on_success: never
+   on_failure: never
